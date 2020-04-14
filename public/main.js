@@ -9,11 +9,33 @@ function findMatches(wordsToMatch, cities) {
   return cities.filter((place) => {
     // here we need to figure out if the city or state matches what we searched
     console.log(place)
-    const regex = new RegExp(wordToMatch, 'gi')
+    const regex = new RegExp(wordsToMatch, 'gi')
     return place.city.match(regex) || place.state.match(regex)
   })
 }
 
 function displayMatch() {
-  console.log(this.value)
+  const matchArray = findMatches(this.value, cities)
+  // console.log(matchArray)
+  const html = matchArray
+    .map((place) => {
+      const regex = new RegExp(this.value, 'gi')
+      const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`)
+      const stateName = place.state.replace(regex, `<span class="hl">${this.value}</span>`)
+
+      return `
+      <li>
+        <span class="name">${cityName}, ${stateName}</span>
+        <span class="population">${place.population}</span>
+      </li>
+    `
+    })
+    .join('')
+  suggestions.innerHTML = html
 }
+
+const searchInput = document.querySelector('.search')
+const suggestions = document.querySelector('.suggestions')
+
+searchInput.addEventListener('change', displayMatch)
+searchInput.addEventListener('keyup', displayMatch)
