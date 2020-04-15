@@ -14,6 +14,10 @@ function findMatches(wordsToMatch, cities) {
   })
 }
 
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+}
+
 function displayMatch() {
   const matchArray = findMatches(this.value, cities)
   // console.log(matchArray)
@@ -26,7 +30,7 @@ function displayMatch() {
       return `
       <li>
         <span class="name">${cityName}, ${stateName}</span>
-        <span class="population">${place.population}</span>
+        <span class="population">${numberWithCommas(place.population)}</span>
       </li>
     `
     })
