@@ -2,19 +2,18 @@
       GARRETT ANSWER
    ========================== */
 
+ const endpoint =
+   'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json'
 
-   const endpoint =
-     'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json'
+ const cities = []
+ // let cities = []
 
-   const cities = []
-   // let cities = []
-
-   fetch(endpoint)
-      .then(c => c.json())
-      .then(data => {
-        console.log(data)
-        cities.push(...data)
-      })
+ fetch(endpoint)
+    .then(c => c.json())
+    .then(data => {
+      console.log(data)
+      cities.push(...data)
+    })
 
   /* ==== NOTE ==== */
       // use below then statement to add data to cities array ONLY possible if let cities NOT const
@@ -29,76 +28,74 @@
       // OR could just change array above to let citites instead of const array cities.data
   /* ==== END NOTE ==== */
 
-    let search = document.querySelector('.search')
-    console.log(search)
-
-    search.addEventListener('input', function(e) {
-        console.log('searching')
-          console.log(e.target.value)
-
-          cities.filter((current, prev) => {
-
-                console.log(current.city)
-                console.log(current.city.includes(e.target.value))
-
-                let including = current.city.includes(e.target.value)
-                console.log(including)
-
-                let matches = document.querySelector('.suggestions')
-                console.log(matches)
-
-                if (including !== false) {
-                  console.log(matches)
-                  let l = document.createElement('li')
-                  console.log(l)
-
-                  matches.appendChild(l).innerHTML = (`${current.city}`)
-
-                  let ltext = document.createTextNode(`${current.city}`)
-                  // let ltext = (`${current.city}`)
-                  console.log(ltext)
-                  console.log(matches)
+let search = document.querySelector('.search')
+  console.log(search)
 
 
-                } else {
-                  console.log('name doesnt include search')
-                  return current.city
-                }
+function filterCity(e, name, str) {
+    console.log('searching')
+      console.log(e.target.value)
+      console.log(name)
 
-        })
-    })
+      let searchStr = e.target.value
+
+      // cities.filter((c) => {
+
+      let pattern = searchStr.split('')
+      pattern.map(x => {
+        return `(?=.*${x})`
+      }).join('')
+
+            // console.log(c)
+            // console.log(c.city.includes(e.target.value))
+
+            // let regex = new RegExp( `${c.city}`, 'gi')
+      console.log(pattern)
+
+      let regex = new RegExp(`${pattern}`, 'gi')
+
+      console.log(regex)
 
 
 
+            //
+            // let including = current.city.includes(e.target.value)
+            // console.log(including)
+
+            // let matches = document.querySelector('.suggestions')
+            // console.log(matches)
+            //
+            // if (including !== false) {
+            //   console.log(matches)
+            //   let l = document.createElement('li')
+            //   console.log(l)
+            //
+            //   matches.appendChild(l).innerHTML = (`${current.city}`)
+            //
+            //   let ltext = document.createTextNode(`${current.city}`)
+            //   // let ltext = (`${current.city}`)
+            //   console.log(ltext)
+            //   console.log(matches)
+            //
+            // } else {
+            //   console.log('name doesnt include search')
+            //   return current.city
+            // }
+    // })
+  }
 
 
+search.addEventListener('change', filterCity)
+    // document.addEventListener("DOMContentLoaded", () => {
+    //   filterCity
+    // })
+
+    // document.addEventListener("DOMContentLoaded", function() {
+    //   filterCity()
+    // })
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    // search.addEventListener('keyup', filterCity)
 
 
 
