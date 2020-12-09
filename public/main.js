@@ -2,6 +2,7 @@
       GARRETT ANSWER
    ========================== */
 
+
  const endpoint =
    'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json'
 
@@ -32,30 +33,36 @@ let search = document.querySelector('.search')
   console.log(search)
 
 
-function filterCity(e, name, str) {
-    console.log('searching')
+function filterCity(e) {
+      console.log('searching')
       console.log(e.target.value)
       console.log(name)
 
       let searchStr = e.target.value
 
-      // cities.filter((c) => {
 
-      let pattern = searchStr.split('')
-      pattern.map(x => {
+      let pattern = searchStr.split('').map(x => {
+        console.log(`(?=.*${x})`)
         return `(?=.*${x})`
       }).join('')
 
-            // console.log(c)
-            // console.log(c.city.includes(e.target.value))
 
-            // let regex = new RegExp( `${c.city}`, 'gi')
       console.log(pattern)
+      console.log(cities)
 
-      let regex = new RegExp(`${pattern}`, 'gi')
-
+      let regex = new RegExp(`${pattern}`)
       console.log(regex)
 
+
+      cities.filter(c => {
+        console.log(c)
+        console.log(c.city + ' is a ' + typeof c.city)
+        console.log(`${regex}`)
+
+
+        // console.log(c.city.match(/[A-Z]/gi))
+        console.log(c.city.match(/[`?=.*${regex}`]/gi))
+      })
 
 
 
@@ -86,7 +93,9 @@ function filterCity(e, name, str) {
   }
 
 
-search.addEventListener('change', filterCity)
+// search.addEventListener('keyup', filterCity)
+search.addEventListener('keyup', filterCity)
+
     // document.addEventListener("DOMContentLoaded", () => {
     //   filterCity
     // })
