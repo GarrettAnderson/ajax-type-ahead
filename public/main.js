@@ -42,7 +42,7 @@ function addCityToUI(filteredCity) {
       // console.log(x.city)
       let li = document.createElement('li')
       // console.log(li)
-      li.textContent = x.city
+      li.textContent = x.city + ', ' + x.state
       let listItem = citiesUIList.appendChild(li)
       // console.log(listItem)
       // let repo = []
@@ -84,31 +84,11 @@ function filterCity(e) {
 
 
       let filteredCities = cities.filter(c => {
-        //  console.log(c.city.includes(searchStr))
-          // console.log(c.city + ' is a ' + typeof c.city)
+         console.log(c.city.includes(searchStr))
+         console.log(c.state.includes(searchStr))
+        // console.log(c.city + ' is a ' + typeof c.city)
 
           return c.city.includes(searchStr.toLocaleLowerCase().substring(0, 3))
-
-      //   console.log(`${regex}`)
-      //   let li = `<li> TEST </li>`
-      //   console.log(li)
-      //
-      //   if (c.city.includes(`${regex}`)) {
-      //     let matchedCity = c.city
-      //     console.log('conditions met')
-      //     const resultList = document.querySelector('.suggestions')
-      //     console.log(resultList)
-      //     // let li = `<li> TEST </li>`
-      //     // console.log(li)
-      //     // resultList.appendChild(li)
-      //   } else {
-      //     console.log(resultList.appendChild('<li>Test</li>'))
-      //   }
-
-
-
-        // console.log(c.city.match(/([A-Z])\w+/gi))
-        // console.log(c.city.match(/[`?=.*${regex}`]/gi))
       })
 
       console.log(filteredCities)
