@@ -39,12 +39,12 @@ let citiesUIList = document.querySelector('.suggestions')
 
 function addCityToUI(filteredCity) {
   filteredCity.map(x => {
-      console.log(x.city)
+      // console.log(x.city)
       let li = document.createElement('li')
-      console.log(li)
+      // console.log(li)
       li.textContent = x.city
       let listItem = citiesUIList.appendChild(li)
-      console.log(listItem)
+      // console.log(listItem)
       // let repo = []
       // repo.push(`${li}`)
       // console.log(repo)
@@ -53,22 +53,22 @@ function addCityToUI(filteredCity) {
       //   return listItem[i]
       // }
   })
+
     if (filteredCity !== 'no resutls') {
       console.log('pass')
     } else {
       console.log('fail')
-      citiesUIList.parentNode.removeChild(citiesUIList)
-
     }
+
 }
 
 
 function filterCity(e) {
 
-      console.log('searching')
-      console.log(e.target.value)
+      // console.log('searching')
+      // console.log(e.target.value)
       let searchStr = e.target.value
-      console.log(searchStr)
+      // console.log(searchStr)
       citiesUIList.innerHTML = ''
       // let pattern = searchStr.split('').map(x => {
       //   console.log(`(?=.*${x})`)
@@ -113,12 +113,12 @@ function filterCity(e) {
 
       console.log(filteredCities)
 
-      if (filteredCities.length > 0) {
-        console.log(filteredCities)
-        addCityToUI(filteredCities)
-      } else {
-        console.log("no results")
-      }
+        if (filteredCities.length > 0) {
+          console.log(filteredCities)
+          addCityToUI(filteredCities)
+        } else {
+          console.log("no results")
+        }
 
 
 
