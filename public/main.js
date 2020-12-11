@@ -87,8 +87,9 @@ function filterCity(e) {
          console.log(c.city.includes(searchStr))
          console.log(c.state.includes(searchStr))
         // console.log(c.city + ' is a ' + typeof c.city)
-
-          return c.city.includes(searchStr.toLocaleLowerCase().substring(0, 3))
+        let cityLC = c.city.toLowerCase()
+        let stateLC = c.state.toLowerCase()
+          return cityLC.includes(searchStr.toLowerCase()) && stateLC.includes(searchStr.toLowerCase())
       })
 
       console.log(filteredCities)
