@@ -39,12 +39,15 @@ function addCityToUI(filteredCity) {
       console.log(x.city)
       let li = document.createElement('li')
       li.textContent = x.city
-      let listItem = citiesUIList.appendChild(li)
-      // console.log(listItem)
-
-      for (let i = 0; i < listItem.length; i++) {
-        return listItem[i]
-      }
+      // let listItem = citiesUIList.appendChild(li)
+      console.log(li.textContent)
+      // let repo = []
+      // repo.push(`${li}`)
+      // console.log(repo)
+      //
+      // for (let i = 0; i < listItem.length; i++) {
+      //   return listItem[i]
+      // }
 
   })
 }
@@ -71,7 +74,7 @@ function filterCity(e) {
 
       let filteredCities = cities.filter(c => {
         //  console.log(c.city.includes(searchStr))
-          console.log(c.city + ' is a ' + typeof c.city)
+          // console.log(c.city + ' is a ' + typeof c.city)
 
           return c.city.includes(searchStr.toLocaleLowerCase())
 
@@ -98,7 +101,13 @@ function filterCity(e) {
       })
 
       console.log(filteredCities)
-      addCityToUI(filteredCities)
+
+      if (filteredCities.length > 0) {
+        console.log(filteredCities)
+        addCityToUI(filteredCities)
+      } else {
+        console.log("no results")
+      }
 
 
 
