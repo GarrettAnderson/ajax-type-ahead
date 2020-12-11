@@ -34,13 +34,17 @@ let search = document.querySelector('.search')
 let citiesUIList = document.querySelector('.suggestions')
   console.log(citiesUIList)
 
+// let li = document.createElement('li')
+
+
 function addCityToUI(filteredCity) {
   filteredCity.map(x => {
       console.log(x.city)
       let li = document.createElement('li')
+      console.log(li)
       li.textContent = x.city
-      // let listItem = citiesUIList.appendChild(li)
-      console.log(li.textContent)
+      let listItem = citiesUIList.appendChild(li)
+      console.log(listItem)
       // let repo = []
       // repo.push(`${li}`)
       // console.log(repo)
@@ -48,17 +52,24 @@ function addCityToUI(filteredCity) {
       // for (let i = 0; i < listItem.length; i++) {
       //   return listItem[i]
       // }
-
   })
+    if (filteredCity !== 'no resutls') {
+      console.log('pass')
+    } else {
+      console.log('fail')
+      citiesUIList.parentNode.removeChild(citiesUIList)
+
+    }
 }
 
 
 function filterCity(e) {
+
       console.log('searching')
       console.log(e.target.value)
       let searchStr = e.target.value
-
-
+      console.log(searchStr)
+      citiesUIList.innerHTML = ''
       // let pattern = searchStr.split('').map(x => {
       //   console.log(`(?=.*${x})`)
       //   return `(?=.*${x})`
@@ -76,7 +87,7 @@ function filterCity(e) {
         //  console.log(c.city.includes(searchStr))
           // console.log(c.city + ' is a ' + typeof c.city)
 
-          return c.city.includes(searchStr.toLocaleLowerCase())
+          return c.city.includes(searchStr.toLocaleLowerCase().substring(0, 3))
 
       //   console.log(`${regex}`)
       //   let li = `<li> TEST </li>`
@@ -137,8 +148,6 @@ function filterCity(e) {
     // })
   }
 
-
-// search.addEventListener('keyup', filterCity)
 search.addEventListener('keyup', filterCity)
 
     // document.addEventListener("DOMContentLoaded", () => {
