@@ -2,7 +2,6 @@
       GARRETT ANSWER
    ========================== */
 
-
  const endpoint =
    'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json'
 
@@ -32,37 +31,74 @@
 let search = document.querySelector('.search')
   console.log(search)
 
+let citiesUIList = document.querySelector('.suggestions')
+  console.log(citiesUIList)
+
+function addCityToUI(filteredCity) {
+  filteredCity.map(x => {
+      console.log(x.city)
+      let li = document.createElement('li')
+      li.textContent = x.city
+      let listItem = citiesUIList.appendChild(li)
+      // console.log(listItem)
+
+      for (let i = 0; i < listItem.length; i++) {
+        return listItem[i]
+      }
+
+  })
+}
+
 
 function filterCity(e) {
       console.log('searching')
       console.log(e.target.value)
-      console.log(name)
-
       let searchStr = e.target.value
 
 
-      let pattern = searchStr.split('').map(x => {
-        console.log(`(?=.*${x})`)
-        return `(?=.*${x})`
-      }).join('')
+      // let pattern = searchStr.split('').map(x => {
+      //   console.log(`(?=.*${x})`)
+      //   return `(?=.*${x})`
+      // }).join('')
+
+      // console.log(pattern)
+      // console.log(cities)
+
+      // let regex = new RegExp(`${pattern}`)
+      // console.log(regex)
+      // console.log(searchStr.match(`${regex}`))
 
 
-      console.log(pattern)
-      console.log(cities)
+      let filteredCities = cities.filter(c => {
+        //  console.log(c.city.includes(searchStr))
+          console.log(c.city + ' is a ' + typeof c.city)
 
-      let regex = new RegExp(`${pattern}`)
-      console.log(regex)
+          return c.city.includes(searchStr.toLocaleLowerCase())
+
+      //   console.log(`${regex}`)
+      //   let li = `<li> TEST </li>`
+      //   console.log(li)
+      //
+      //   if (c.city.includes(`${regex}`)) {
+      //     let matchedCity = c.city
+      //     console.log('conditions met')
+      //     const resultList = document.querySelector('.suggestions')
+      //     console.log(resultList)
+      //     // let li = `<li> TEST </li>`
+      //     // console.log(li)
+      //     // resultList.appendChild(li)
+      //   } else {
+      //     console.log(resultList.appendChild('<li>Test</li>'))
+      //   }
 
 
-      cities.filter(c => {
-        console.log(c)
-        console.log(c.city + ' is a ' + typeof c.city)
-        console.log(`${regex}`)
 
-
-        // console.log(c.city.match(/[A-Z]/gi))
-        console.log(c.city.match(/[`?=.*${regex}`]/gi))
+        // console.log(c.city.match(/([A-Z])\w+/gi))
+        // console.log(c.city.match(/[`?=.*${regex}`]/gi))
       })
+
+      console.log(filteredCities)
+      addCityToUI(filteredCities)
 
 
 
