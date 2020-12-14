@@ -47,10 +47,15 @@ function addCityToUI(filteredCity) {
 
       // console.log(li)
 
-      li.textContent = x.city + ', ' + x.state + ' .......... ' + x.population
-      let listItem = citiesUIList.appendChild(li)
+      let cityName = x.city.replace(regex,`<span class='highlight'>${searchStr}</span>`)
+      let stateName = x.state.replace(regex, `<span class='highlight'>${searchStr}</span>`)
 
-      x.city.replace(regex,`<span class='highlight'>${searchStr}</span>`)
+      li.innerHTML = `
+      <span class="name">${cityName}, ${stateName}</span>
+      <span class="population">${x.population}</span>
+      `
+
+      let listItem = citiesUIList.appendChild(li)
 
       // splitStr.map(s => {
       //
