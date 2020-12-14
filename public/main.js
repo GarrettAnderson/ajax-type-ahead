@@ -34,19 +34,23 @@ let search = document.querySelector('.search')
 let citiesUIList = document.querySelector('.suggestions')
   console.log(citiesUIList)
 
+let regex = ''
+let searchStr = ''
 // let li = document.createElement('li')
 
 
 function addCityToUI(filteredCity) {
   filteredCity.map(x => {
-      // console.log(x.city)
+      // console.log(regex)
 
       let li = document.createElement('li')
 
       // console.log(li)
 
-      li.textContent = x.city + ', ' + x.state
+      li.textContent = x.city + ', ' + x.state + ' .......... ' + x.population
       let listItem = citiesUIList.appendChild(li)
+
+      x.city.replace(regex,`<span class='highlight'>${searchStr}</span>`)
 
       // splitStr.map(s => {
       //
@@ -76,7 +80,7 @@ function filterCity(e) {
 
       // console.log('searching')
       // console.log(e.target.value)
-      let searchStr = e.target.value
+      searchStr = e.target.value
       console.log(searchStr)
       citiesUIList.innerHTML = ''
       // let pattern = searchStr.split('').map(x => {
@@ -87,13 +91,14 @@ function filterCity(e) {
       // console.log(pattern)
       // console.log(cities)
 
-      let regex = new RegExp(`${searchStr}`, 'gi')
+      regex = new RegExp(`${searchStr}`, 'gi')
       console.log(regex)
 
 
       let filteredCities = cities.filter(c => {
          console.log(c.city.includes(searchStr))
          console.log(c.state.includes(searchStr))
+
         // console.log(c.city + ' is a ' + typeof c.city)
         let cityLC = c.city.toLowerCase()
         let stateLC = c.state.toLowerCase()
