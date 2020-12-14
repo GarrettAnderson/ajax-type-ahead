@@ -89,7 +89,6 @@ function filterCity(e) {
 
       let regex = new RegExp(`${searchStr}`, 'gi')
       console.log(regex)
-      // console.log(searchStr.match(`${regex}`))
 
 
       let filteredCities = cities.filter(c => {
