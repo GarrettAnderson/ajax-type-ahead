@@ -40,11 +40,17 @@ let citiesUIList = document.querySelector('.suggestions')
 function addCityToUI(filteredCity) {
   filteredCity.map(x => {
       // console.log(x.city)
+
       let li = document.createElement('li')
+
       // console.log(li)
+
       li.textContent = x.city + ', ' + x.state
       let listItem = citiesUIList.appendChild(li)
-      // console.log(listItem)
+
+      // splitStr.map(s => {
+      //
+      // })
       // let repo = []
       // repo.push(`${li}`)
       // console.log(repo)
@@ -52,7 +58,10 @@ function addCityToUI(filteredCity) {
       // for (let i = 0; i < listItem.length; i++) {
       //   return listItem[i]
       // }
+
   })
+
+
 
     if (filteredCity !== 'no resutls') {
       console.log('pass')
@@ -68,7 +77,7 @@ function filterCity(e) {
       // console.log('searching')
       // console.log(e.target.value)
       let searchStr = e.target.value
-      // console.log(searchStr)
+      console.log(searchStr)
       citiesUIList.innerHTML = ''
       // let pattern = searchStr.split('').map(x => {
       //   console.log(`(?=.*${x})`)
@@ -78,8 +87,8 @@ function filterCity(e) {
       // console.log(pattern)
       // console.log(cities)
 
-      // let regex = new RegExp(`${pattern}`)
-      // console.log(regex)
+      let regex = new RegExp(`${searchStr}`, 'gi')
+      console.log(regex)
       // console.log(searchStr.match(`${regex}`))
 
 
@@ -89,10 +98,16 @@ function filterCity(e) {
         // console.log(c.city + ' is a ' + typeof c.city)
         let cityLC = c.city.toLowerCase()
         let stateLC = c.state.toLowerCase()
-          return cityLC.includes(searchStr.toLowerCase()) && stateLC.includes(searchStr.toLowerCase())
+          // return cityLC.includes(searchStr.toLowerCase())
+          return cityLC.match(regex) || stateLC.match(regex)
       })
 
       console.log(filteredCities)
+      //
+      // filteredCities.map(c => {
+      //   console.log(c)
+      //   if (c.city.includes())
+      // })
 
         if (filteredCities.length > 0) {
           console.log(filteredCities)
