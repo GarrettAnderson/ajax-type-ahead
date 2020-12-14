@@ -49,10 +49,12 @@ function addCityToUI(filteredCity) {
 
       let cityName = x.city.replace(regex,`<span class='highlight'>${searchStr}</span>`)
       let stateName = x.state.replace(regex, `<span class='highlight'>${searchStr}</span>`)
+      let pop = parseInt(x.population).toLocaleString()
+      console.log(pop)
 
       li.innerHTML = `
       <span class="name">${cityName}, ${stateName}</span>
-      <span class="population">${x.population}</span>
+      <span class="population">${pop}</span>
       `
 
       let listItem = citiesUIList.appendChild(li)
@@ -86,7 +88,7 @@ function filterCity(e) {
       // console.log('searching')
       // console.log(e.target.value)
       searchStr = e.target.value
-      console.log(searchStr)
+      // console.log(searchStr)
       citiesUIList.innerHTML = ''
       // let pattern = searchStr.split('').map(x => {
       //   console.log(`(?=.*${x})`)
@@ -97,12 +99,12 @@ function filterCity(e) {
       // console.log(cities)
 
       regex = new RegExp(`${searchStr}`, 'gi')
-      console.log(regex)
+      // console.log(regex)
 
 
       let filteredCities = cities.filter(c => {
-         console.log(c.city.includes(searchStr))
-         console.log(c.state.includes(searchStr))
+         // console.log(c.city.includes(searchStr))
+         // console.log(c.state.includes(searchStr))
 
         // console.log(c.city + ' is a ' + typeof c.city)
         let cityLC = c.city.toLowerCase()
